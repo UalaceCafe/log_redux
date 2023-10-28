@@ -10,7 +10,7 @@ LogRedux is a simple but rather customizable logging library for Ruby. It was co
 
 ## What LogRedux is not
 
-LogRedux does not intend to be a replacement for the _stdlib_ Logger library - it's neither better nor more complete than it. Rather, LogRedux is simply another alternative for logging in your Ruby application.
+LogRedux does not aim to be a replacement for _stdlib_'s Logger library - it's neither better nor more complete than it. Rather, LogRedux is simply another alternative for logging in your Ruby application.
 
 ## Installation
 
@@ -49,17 +49,17 @@ The following arguments must be named:
 - `color`: Whether the logger should colorize the output using ANSI color codes. Defaults to `true`.
 - `timestamp`: Whether the logger should add a timestamp to the output. Defaults to `true`.
 - `filename`: Whether the logger should add the name of the file from which the log was generated. Defaults to `true`.
-- `track`: Whether keep track internally of all logs emitted. Defaults to `false`.
+- `track`: Whether to keep track internally of all logs emitted. Defaults to `false`.
 
 For example:
-
-> **Note**
->
-> I recommend disabling `color` when logging to a file, as it will add ANSI color codes to the output, making it harder to read.
 
 ```ruby
 logger = LogRedux::Logger.new('log.txt', color: false, timestamp: true, filename: false, track: true)
 ```
+
+> **Note**
+>
+> I recommend disabling `color` when logging to a file, as it will add ANSI color codes to the output, making it harder to read. If later you wish to read from the file and print these logs to the screen, its better to create two loggers, one for the file and one for the terminal ($stdout or $stderr).
 
 ### Logging
 
@@ -83,30 +83,30 @@ All the methods above return the formatted log message.
 x = logger.warn("Hi!") #=> x == "17:00:00 WARN test.rb:1: Hi!"
 ```
 
-### Logging Levels
+### Log Levels
 
-LogRedux offers 6 different logging levels:
+LogRedux offers 6 different log levels:
 
 - __"TRACE"__ (also _:TRACE_) - Used for verbose, fine-grained information of what is happening in your application or inside third-party libraries.
 - __"DEBUG"__ (also _:DEBUG_) - Less verbose than __TRACE__. Used for messages needed for diagnosing and troubleshooting.
 - __"INFO"__ (also _:INFO_) - The standard log level for regular events. Used for general information about the application's operation.
 - __"WARN"__ (also _:WARN_) - Used for potentially harmful situations that are not necessarily errors.
-- __"ERROR"__ (also _:ERROR_) - Used for recoverable or treatable errors preventing one or more operations from working properly.
+- __"ERROR"__ (also _:ERROR_) - Used for errors preventing one or more operations from working properly.
 - __"FATAL"__ (also _:FATAL_) - Used for unrecoverable errors that are fatal to crucial operations.
 
 ### History
 
-If tracking was enabled, the logging history can be accessed through the `history` instance variable:
+If tracking is enabled, the logging history can be accessed via the `history` instance variable:
 
 ```ruby
-p logger.history # This will print [] if `track` is set to false
+p logger.history # This will always print [] if `track` is set to false
 ```
 
-The history will be an array of hashes with the following keys:
+`history` is an array of hashes with the following keys:
 - `:level`: The level of the log.
 - `:time`: The timestamp of the log.
 - `:filename`: The file from which the log was generated.
-- `:line`: The line from which the log was generated.
+- `:line`: The line number where the log was generated.
 - `:msg`: The message of the log.
 - `:formatted`: The complete formatted log message.
 
