@@ -12,6 +12,10 @@ LogRedux is a simple but rather customizable logging library for Ruby. It was co
 
 LogRedux does not aim to be a replacement for _stdlib_'s Logger library - it's neither better nor more complete than it. Rather, LogRedux is simply another alternative for logging in your Ruby application.
 
+## Examples
+
+A rather complete example of LogRedux in action can be found in the [examples](examples) folder.
+
 ## Installation
 
 Get the `log_redux` gem by running:
@@ -45,6 +49,10 @@ logger = LogRedux::Logger.new
 `Logger.new` accepts the following options:
 - `output_filename`: The name of the file to which the logger will write. Defaults to `$stderr`. Expects either a string, `$stdout` or `$stderr`.
 
+> **Note**
+>
+> By default, `output_filename` will be opened in append mode, meaning that if the file already exists, the logger will append to it instead of overwriting it. If you wish to overwrite the contents of the file, make sure to always clear or delete it before creating the logger or after closing it.
+
 The following arguments must be named:
 - `color`: Whether the logger should colorize the output using ANSI color codes. Defaults to `true`.
 - `timestamp`: Whether the logger should add a timestamp to the output. Defaults to `true`.
@@ -59,7 +67,7 @@ logger = LogRedux::Logger.new('log.txt', color: false, timestamp: true, filename
 
 > **Note**
 >
-> I recommend disabling `color` when logging to a file, as it will add ANSI color codes to the output, making it harder to read. If later you wish to read from the file and print these logs to the screen, its better to create two loggers, one for the file and one for the terminal ($stdout or $stderr).
+> I recommend disabling `color` when logging to a file, as it will add ANSI color codes to the output, making it harder to read. If later you wish to read from the file and print these logs to the screen, it's better to instead create two loggers, one for the file and one for the terminal (`$stdout` or `$stderr`).
 
 ### Logging
 
