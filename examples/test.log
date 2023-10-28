@@ -1,0 +1,7 @@
+00:47:41 INFO examples/test.rb:5: This is a test message
+00:47:41 TRACE examples/test.rb:7: trace message
+00:47:41 DEBUG examples/test.rb:8: debug message
+00:47:41 INFO examples/test.rb:9: info message
+00:47:41 WARN examples/test.rb:10: warn message
+00:47:41 ERROR examples/test.rb:11: error message
+00:47:41 FATAL examples/test.rb:12: fatal message
