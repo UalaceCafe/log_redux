@@ -25,13 +25,7 @@ module LogRedux
 
       level_str = level.to_s
       time = Time.now.strftime('%H:%M:%S')
-
-      log_caller = caller(1)
-      file_line = if log_caller.size > 1
-                    log_caller.last.split(':')[0..1]
-                  else
-                    log_caller.first.split(':')[0..1]
-                  end
+      file_line = caller(1).last.split(':')[0..1]
       filename = file_line[0]
       line_number = file_line[1]
 
