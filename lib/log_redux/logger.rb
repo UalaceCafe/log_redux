@@ -3,7 +3,7 @@ require_relative 'logger_helpers'
 module LogRedux
   class Logger
     attr_reader :output_filename, :log_file, :history
-    attr_accessor :color, :timestamp, :filename, :line_number, :track
+    attr_accessor :color, :timestamp, :filename, :track
 
     def initialize(output_filename = $stderr, color: true, timestamp: true, filename: true, track: false)
       if output_filename.nil? || (!output_filename.is_a?(String) && !check_valid_stdio(output_filename))
