@@ -56,7 +56,7 @@ logger = LogRedux::Logger.new
 The following arguments must be named:
 - `color`: Whether the logger should colorize the output using ANSI color codes. Defaults to `true`.
 - `timestamp`: Whether the logger should add a timestamp to the output. Defaults to `true`.
-- `filename`: Whether the logger should add the name of the file from which the log was generated. Defaults to `true`.
+- `filename`: Whether the logger should add the name and the line number of the file from which the log was generated. Defaults to `true`.
 - `track`: Whether to keep track internally of all logs emitted. Defaults to `false`.
 
 For example:
@@ -68,6 +68,14 @@ logger = LogRedux::Logger.new('log.txt', color: false, timestamp: true, filename
 > **Note**
 >
 > I recommend disabling `color` when logging to a file, as it will add ANSI color codes to the output, making it harder to read. If later you wish to read from the file and print these logs to the screen, it's better to instead create two loggers, one for the file and one for the terminal (`$stdout` or `$stderr`).
+
+These arguments can be accessed and modified after the logger is created via their respective instance variables:
+
+```ruby
+attr_accessor :color, :timestamp, :filename, :track
+```
+
+The actual `File` object of the logger can be accessed (but not modified) via the `log_file` instance variable.
 
 ### Logging
 
